@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="A clean, responsive starter website for teachers: announcements, resources, schedule, and contact." />
+  <title>TeacherHub — Starter Site for Teachers</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%235b8def'/><text x='50' y='55' font-size='50' text-anchor='middle' fill='white'>T</text></svg>">
+</head>
+<body>
+  <!-- Skip link for accessibility -->
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#home" aria-label="TeacherHub Home">
+        <span class="brand-logo" aria-hidden="true">📘</span>
+        <span class="brand-text">TeacherHub</span>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <button class="nav-toggle" aria-controls="primary-menu" aria-expanded="false">
+          <span class="sr-only">Toggle menu</span>☰
+        </button>
+        <ul id="primary-menu" class="menu">
+          <li><a href="#announcements">Announcements</a></li>
+          <li><a href="#resources">Resources</a></li>
+          <li><a href="#schedule">Schedule</a></li>
+          <li><a href="#assignments">Assignments</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <button id="themeToggle" class="btn btn-ghost" aria-label="Toggle dark mode">🌓</button>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Hero -->
+    <section id="home" class="hero">
+      <div class="container hero-inner">
+        <h1>Welcome, Teachers!</h1>
+        <p class="lead">
+          A simple, responsive starter site to help you share updates, post resources,
+          keep a weekly schedule, and collect messages from students or parents.
+        </p>
+        <div class="hero-cta">
+          <a class="btn" href="#announcements">View Announcements</a>
+          <a class="btn btn-outline" href="#resources">Browse Resources</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Announcements -->
+    <section id="announcements" class="section">
+      <div class="container">
+        <header class="section-header">
+          <h2>Latest Announcements</h2>
+          <p class="muted">Quick updates for your classes</p>
+        </header>
+
+        <div id="announcementList" class="grid cards"></div>
+      </div>
+    </section>
+
+    <!-- Resources -->
+    <section id="resources" class="section alt">
+      <div class="container">
+        <header class="section-header">
+          <h2>Class Resources</h2>
+          <p class="muted">Search and filter by type</p>
+        </header>
+
+        <div class="toolbar">
+          <input id="resourceSearch" class="input" type="search" placeholder="Search resources…" aria-label="Search resources" />
+          <select id="typeFilter" class="select" aria-label="Filter by type">
+            <option value="">All types</option>
+            <option value="PDF">PDF</option>
+            <option value="Slide">Slide</option>
+            <option value="Link">Link</option>
+            <option value="Doc">Doc</option>
+          </select>
+        </div>
+
+        <div id="resourceList" class="grid cards"></div>
+      </div>
+    </section>
+
+    <!-- Schedule -->
+    <section id="schedule" class="section">
+      <div class="container">
+        <header class="section-header">
+          <h2>This Week's Schedule</h2>
+          <p class="muted">Upcoming classes & events</p>
+        </header>
+
+        <ul id="scheduleList" class="timeline" aria-live="polite"></ul>
+      </div>
+    </section>
+
+    <!-- Assignments (local storage demo) -->
+    <section id="assignments" class="section alt">
+      <div class="container">
+        <header class="section-header">
+          <h2>Assignments</h2>
+          <p class="muted">Add and manage assignments (saved in your browser)</p>
+        </header>
+
+        <form id="assignmentForm" class="card form-card" novalidate>
+          <div class="field">
+            <label for="title">Title</label>
+            <input id="title" name="title" class="input" required placeholder="e.g., Essay on Shakespeare" />
+            <small class="error" data-for="title"></small>
+          </div>
+          <div class="field">
+            <label for="due">Due date</label>
+            <input id="due" name="due" type="date" class="input" required />
+            <small class="error" data-for="due"></small>
+          </div>
+          <div class="field">
+            <label for="details">Details</label>
+            <textarea id="details" name="details" class="input" rows="3" placeholder="Short description…"></textarea>
+          </div>
+          <button class="btn" type="submit">Add Assignment</button>
+        </form>
+
+        <div id="assignmentEmpty" class="empty-state" hidden>
+          <p>No assignments yet. Add your first one above.</p>
+        </div>
+
+        <ul id="assignmentList" class="list"></ul>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section">
+      <div class="container">
+        <header class="section-header">
+          <h2>Contact</h2>
+          <p class="muted">Send a quick message</p>
+        </header>
+
+        <form id="contactForm" class="card form-card" novalidate>
+          <div class="field">
+            <label for="name">Name</label>
+            <input id="name" name="name" class="input" required placeholder="Your full name" />
+            <small class="error" data-for="name"></small>
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" class="input" required placeholder="name@example.com" />
+            <small class="error" data-for="email"></small>
+          </div>
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" class="input" rows="4" required placeholder="How can we help?"></textarea>
+            <small class="error" data-for="message"></small>
+          </div>
+          <button class="btn" type="submit">Send Message</button>
+          <p id="contactSuccess" class="success" role="status" hidden>Thanks! Your message has been captured locally for demo purposes.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; <span id="year"></span> TeacherHub. Built as a starter demo. </p>
+      <a href="#home" class="back-to-top">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
